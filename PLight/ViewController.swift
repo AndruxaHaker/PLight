@@ -1,25 +1,31 @@
-//
-//  ViewController.swift
-//  PLight
-//
-//  Created by student on 28.09.2018.
-//  Copyright © 2018 ithug. All rights reserved.
-//
 
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBAction func buttonPressed() {
+        isOn = !isOn
+    }
+    
+    var isOn = true {
+        didSet {
+            updateUI()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        updateUI()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func updateUI() {
+  //      if isOn {
+    //        view.backgroundColor = .white
+      //  } else {
+     //       view.backgroundColor = .black
+      //  }
+        view.backgroundColor = isOn ? .white : .black
     }
-
-
+    override var preferStatusBarHidden: Bool {
+        return true 
+    }
 }
 
