@@ -1,4 +1,5 @@
 
+import AVFoundation 
 import UIKit
 
 class ViewController: UIViewController {
@@ -17,6 +18,20 @@ class ViewController: UIViewController {
     }
     
     func updateUI() {
+        let device = AVCaptureDevice.default(for: .video)
+        
+        if let device = device {
+            device.hasTorch {
+                view.backgroundColor = .black
+                do {
+                    try device.lockForConfiguration()
+                    device.torchMode = isON ? .on : .off
+                    device.unlockForConfiguration()
+                } catch {
+                    print(#function, error)
+                }
+            }
+        }
   //      if isOn {
     //        view.backgroundColor = .white
       //  } else {
