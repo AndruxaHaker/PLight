@@ -20,18 +20,17 @@ class ViewController: UIViewController {
     func updateUI() {
         let device = AVCaptureDevice.default(for: .video)
         
-        if let device = device {
-            device.hasTorch {
+        if let device = device,  device.hasTorch {
                 view.backgroundColor = .black
                 do {
                     try device.lockForConfiguration()
-                    device.torchMode = isON ? .on : .off
+                    device.torchMode = isOn ? .on : .off
                     device.unlockForConfiguration()
                 } catch {
                     print(#function, error)
                 }
             }
-        }
+        
   //      if isOn {
     //        view.backgroundColor = .white
       //  } else {
@@ -39,7 +38,7 @@ class ViewController: UIViewController {
       //  }
         view.backgroundColor = isOn ? .white : .black
     }
-    override var preferStatusBarHidden: Bool {
+    override var prefersStatusBarHidden: Bool {
         return true 
     }
 }
